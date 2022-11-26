@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-
 const connectDB = (URI) => {
-  return mongoose.connect(URI);
+  // return db connection string
+  // mongoose implementation example:
+  // return mongoose.connect(URI);
+  return undefined;
 };
 export default connectDB;

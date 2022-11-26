@@ -1,44 +1,32 @@
-import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-const AuthSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: [true, "Please provide a name"],
-    trim: true,
-    minlength: 3,
-    maxlength: 50,
-  },
-
-  email: {
-    type: String,
-    required: [true, "Please provide an email"],
-    match: [
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      "Please provide a valid email",
-    ],
-    unique: true,
-    trim: true,
-  },
-
-  password: {
-    type: String,
-    required: [true, "Password can't be empty"],
-    trim: true,
-    minlength: 6,
-    maxlength: 64,
-  },
-
-  // TODO: make a pre method to have a function of checking
-  // if both passwords are identical
-  // passwordConfirm: {
+const AuthSchema = {
+  // username: {
   //   type: String,
-  //   required: [true, "Please provide a password"],
+  //   required: [true, "Please provide a name"],
+  //   trim: true,
+  //   minlength: 3,
+  //   maxlength: 50,
+  // },
+  // email: {
+  //   type: String,
+  //   required: [true, "Please provide an email"],
+  //   match: [
+  //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  //     "Please provide a valid email",
+  //   ],
+  //   unique: true,
+  //   trim: true,
+  // },
+  // password: {
+  //   type: String,
+  //   required: [true, "Password can't be empty"],
   //   trim: true,
   //   minlength: 6,
+  //   maxlength: 64,
   // },
-});
+};
 
 // hash password
 AuthSchema.pre("save", async function () {
@@ -62,4 +50,5 @@ AuthSchema.methods.validatePassword = async function (passwordCandidate) {
   return isPasswordValidated;
 };
 
-export const Auth = mongoose.model("User Auth", AuthSchema);
+// export const Auth = mongoose.model("User Auth", AuthSchema);
+// export the model as "User Auth"
